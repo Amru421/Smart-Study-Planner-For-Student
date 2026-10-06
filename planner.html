@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Study Planner</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+    <header>
+
+        <div class="logo">📚 StudyPlanner</div>
+
+        <nav>
+
+            <a href="index.html">Home</a>
+
+            <a href="subjects.html">Subjects</a>
+
+            <a href="planner.html" class="active">
+                Planner
+            </a>
+
+            <a href="timetable.html">
+                Timetable
+            </a>
+
+            <a href="progress.html">
+                Progress
+            </a>
+
+            <button onclick="toggleDarkMode()">
+                🌙
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main class="page">
+
+        <h1>📝 Daily Study Planner</h1>
+
+        <p class="subtitle">
+            Add your study tasks and track completion.
+        </p>
+
+
+        <div class="form-card">
+
+            <input type="text" id="taskInput" placeholder="Enter study task">
+
+
+            <select id="priority">
+
+                <option value="Low">
+                    Low Priority
+                </option>
+
+                <option value="Medium">
+                    Medium Priority
+                </option>
+
+                <option value="High">
+                    High Priority
+                </option>
+
+            </select>
+
+
+            <button onclick="addTask()" class="btn">
+
+                + Add Task
+
+            </button>
+
+        </div>
+
+
+        <div class="task-section">
+
+            <h2>Today's Tasks</h2>
+
+            <div id="taskList"></div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 Student Study Planner
+        </p>
+
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

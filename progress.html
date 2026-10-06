@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Progress</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            📚 StudyPlanner
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="subjects.html">
+                Subjects
+            </a>
+
+            <a href="planner.html">
+                Planner
+            </a>
+
+            <a href="timetable.html">
+                Timetable
+            </a>
+
+            <a href="progress.html" class="active">
+                Progress
+            </a>
+
+            <button onclick="toggleDarkMode()">
+                🌙
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <main class="page">
+
+        <h1>📊 Study Progress</h1>
+
+        <p class="subtitle">
+            Track your completed study tasks.
+        </p>
+
+
+        <div class="progress-card">
+
+            <h2>Overall Progress</h2>
+
+            <div class="progress-circle">
+
+                <span id="progressPercentage">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div id="progressBar"></div>
+
+            </div>
+
+
+            <p id="progressText">
+                Complete your tasks to increase your progress.
+            </p>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <h2 id="totalTasks">
+                    0
+                </h2>
+
+                <p>Total Tasks</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h2 id="completedTasks">
+                    0
+                </h2>
+
+                <p>Completed Tasks</p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h2 id="remainingTasks">
+                    0
+                </h2>
+
+                <p>Remaining Tasks</p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 Student Study Planner
+        </p>
+
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

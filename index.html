@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Planner - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">📚 StudyPlanner</div>
+
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="subjects.html">Subjects</a>
+            <a href="planner.html">Planner</a>
+            <a href="timetable.html">Timetable</a>
+            <a href="progress.html">Progress</a>
+            <button onclick="toggleDarkMode()">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div>
+                <h1>Plan Your Study.<br>Achieve Your Goals. 🎯</h1>
+                <p>
+                    Organize your subjects, tasks and study schedule
+                    in one simple place.
+                </p>
+
+                <a href="planner.html" class="btn">
+                    Start Planning
+                </a>
+            </div>
+
+            <div class="hero-card">
+                <div class="calendar-icon">📅</div>
+                <h2>Today's Focus</h2>
+                <p>Stay consistent and complete your daily goals.</p>
+            </div>
+        </section>
+
+
+        <section class="dashboard">
+
+            <h2>Today's Overview</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="card-icon">📚</div>
+                    <h3 id="subjectCount">0</h3>
+                    <p>Subjects</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📝</div>
+                    <h3 id="taskCount">0</h3>
+                    <p>Total Tasks</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">✅</div>
+                    <h3 id="completedCount">0</h3>
+                    <p>Completed</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3 id="progressCount">0%</h3>
+                    <p>Progress</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="quote">
+            <h2>💡 Study Tip</h2>
+            <p>
+                "Success is the sum of small efforts, repeated day after day."
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Student Study Planner | Stay Focused 🚀</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

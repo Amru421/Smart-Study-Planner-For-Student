@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Subjects - Study Planner</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">📚 StudyPlanner</div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="subjects.html" class="active">Subjects</a>
+            <a href="planner.html">Planner</a>
+            <a href="timetable.html">Timetable</a>
+            <a href="progress.html">Progress</a>
+
+            <button onclick="toggleDarkMode()">🌙</button>
+        </nav>
+
+    </header>
+
+
+    <main class="page">
+
+        <h1>📚 My Subjects</h1>
+
+        <p class="subtitle">
+            Add and manage the subjects you are studying.
+        </p>
+
+
+        <div class="form-card">
+
+            <input type="text" id="subjectInput" placeholder="Enter subject name">
+
+            <button onclick="addSubject()" class="btn">
+                + Add Subject
+            </button>
+
+        </div>
+
+
+        <div id="subjectList" class="subject-grid"></div>
+
+    </main>
+
+
+    <footer>
+        <p>© 2026 Student Study Planner</p>
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
