@@ -126,6 +126,24 @@
 
         </div>
 
+        <section class="data-tools" aria-labelledby="backupHeading">
+            <h2 id="backupHeading">Back up your planner</h2>
+            <p>Download your subjects and tasks, or restore them from a backup file.</p>
+            <div class="backup-actions">
+                <button type="button" class="btn" onclick="exportPlannerData()">
+                    Download backup
+                </button>
+                <label class="btn import-btn" for="backupFile">Import backup</label>
+                <input
+                    id="backupFile"
+                    class="visually-hidden"
+                    type="file"
+                    accept="application/json,.json"
+                    onchange="importPlannerData(event)">
+            </div>
+            <p id="backupStatus" class="backup-status" aria-live="polite"></p>
+        </section>
+
     </main>
 
 

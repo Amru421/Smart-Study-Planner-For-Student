@@ -430,6 +430,51 @@ th {
 }
 
 
+.data-tools {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+
+.data-tools p {
+    color: #777;
+    margin-top: 10px;
+}
+
+
+.backup-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+
+.import-btn {
+    font-weight: normal;
+}
+
+
+.backup-status.error {
+    color: #c62828;
+}
+
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
 footer {
     text-align: center;
     padding: 25px;
@@ -456,6 +501,7 @@ body.dark .subject-card,
 body.dark .task-section,
 body.dark .progress-card,
 body.dark .stat,
+body.dark .data-tools,
 body.dark table {
     background: #1e1e1e;
 }

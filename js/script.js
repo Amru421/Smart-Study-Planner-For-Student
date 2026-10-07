@@ -587,3 +587,116 @@ function updateProgress() {
         remainingElement.innerText =
             remaining;
 }
+
+
+// ===============================
+// DATA BACKUP
+// ===============================
+
+function exportPlannerData() {
+
+    const status = document.getElementById("backupStatus");
+
+    try {
+        const backup = {
+            version: 1,
+            subjects: JSON.parse(localStorage.getItem("subjects") || "[]"),
+            tasks: JSON.parse(localStorage.getItem("tasks") || "[]")
+        };
+        const blob = new Blob(
+            [JSON.stringify(backup, null, 2)],
+            { type: "application/json" }
+        );
+        const downloadLink = document.createElement("a");
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = `study-planner-backup-${new Date().toISOString().slice(0, 10)}.json`;
+        downloadLink.click();
+        URL.revokeObjectURL(downloadLink.href);
+        status.textContent = "Backup downloaded.";
+        status.classList.remove("error");
+    } catch (error) {
+        status.textContent = "Could not create a backup. Check browser storage permissions.";
+        status.classList.add("error");
+        console.error("Could not export study planner data.", error);
+    }
+}
+
+
+async function importPlannerData(event) {
+
+    const input = event.currentTarget;
+    const file = input.files[0];
+    const status = document.getElementById("backupStatus");
+    if (!file) {
+        return;
+    }
+
+    try {
+        let backup;
+        try {
+            backup = JSON.parse(await file.text());
+        } catch (error) {
+            status.textContent = "The selected file is not valid JSON.";
+            status.classList.add("error");
+            console.error("Could not parse the selected planner backup.", error);
+            return;
+        }
+
+        const priorities = ["Low", "Medium", "High"];
+        const isValidBackup = backup
+            && backup.version === 1
+            && Array.isArray(backup.subjects)
+            && backup.subjects.every(function (subject) {
+                return typeof subject === "string" && subject.trim() !== "";
+            })
+            && Array.isArray(backup.tasks)
+            && backup.tasks.every(function (task) {
+                return task
+                    && typeof task.name === "string"
+                    && task.name.trim() !== ""
+                    && priorities.includes(task.priority)
+                    && typeof task.completed === "boolean";
+            });
+
+        if (!isValidBackup) {
+            status.textContent = "This file is not a supported study planner backup.";
+            status.classList.add("error");
+            return;
+        }
+
+        const previousSubjects = localStorage.getItem("subjects");
+        const previousTasks = localStorage.getItem("tasks");
+        try {
+            localStorage.setItem("subjects", JSON.stringify(backup.subjects));
+            localStorage.setItem("tasks", JSON.stringify(backup.tasks));
+        } catch (error) {
+            try {
+                if (previousSubjects === null) {
+                    localStorage.removeItem("subjects");
+                } else {
+                    localStorage.setItem("subjects", previousSubjects);
+                }
+                if (previousTasks === null) {
+                    localStorage.removeItem("tasks");
+                } else {
+                    localStorage.setItem("tasks", previousTasks);
+                }
+            } catch (restoreError) {
+                console.error("Could not restore planner data after a failed import.", restoreError);
+            }
+            throw error;
+        }
+
+        loadSubjects();
+        loadTasks();
+        updateDashboard();
+        updateProgress();
+        status.textContent = "Backup imported successfully.";
+        status.classList.remove("error");
+        input.value = "";
+    } catch (error) {
+        status.textContent = "Could not import the backup. Check browser storage permissions.";
+        status.classList.add("error");
+        console.error("Could not import study planner data.", error);
+    }
+}
