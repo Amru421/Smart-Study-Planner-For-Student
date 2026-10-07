@@ -61,6 +61,13 @@ function addSubject() {
             localStorage.getItem("subjects")
         ) || [];
 
+    if (subjects.some(function (savedSubject) {
+        return typeof savedSubject === "string"
+            && savedSubject.trim().toLowerCase() === subject.toLowerCase();
+    })) {
+        alert("That subject has already been added.");
+        return;
+    }
 
     subjects.push(subject);
 
@@ -95,6 +102,13 @@ function loadSubjects() {
 
     list.replaceChildren();
 
+    if (subjects.length === 0) {
+        const emptyState = document.createElement("p");
+        emptyState.className = "empty-state";
+        emptyState.textContent = "No subjects yet. Add one above to get started.";
+        list.appendChild(emptyState);
+        return;
+    }
 
     subjects.forEach(
         function(subject, index) {
