@@ -91,6 +91,23 @@
 
             <h2>Today's Tasks</h2>
 
+            <div class="task-filters">
+                <label for="taskStatusFilter">Status</label>
+                <select id="taskStatusFilter" onchange="loadTasks()">
+                    <option value="all">All tasks</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                </select>
+
+                <label for="taskPriorityFilter">Priority</label>
+                <select id="taskPriorityFilter" onchange="loadTasks()">
+                    <option value="all">All priorities</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+
             <div id="taskList"></div>
 
         </div>

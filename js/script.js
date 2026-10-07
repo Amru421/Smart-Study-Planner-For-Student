@@ -243,9 +243,38 @@ function loadTasks() {
 
     list.replaceChildren();
 
+    const statusFilter =
+        document.getElementById("taskStatusFilter")?.value || "all";
+    const priorityFilter =
+        document.getElementById("taskPriorityFilter")?.value || "all";
+    const visibleTasks = tasks
+        .map(function (task, index) {
+            return { task: task, index: index };
+        })
+        .filter(function (entry) {
+            const statusMatches = statusFilter === "all"
+                || (statusFilter === "completed" && entry.task.completed)
+                || (statusFilter === "pending" && !entry.task.completed);
+            const priorityMatches = priorityFilter === "all"
+                || (typeof entry.task.priority === "string"
+                    && entry.task.priority.toLowerCase() === priorityFilter);
+            return statusMatches && priorityMatches;
+        });
 
-    tasks.forEach(
-        function(task, index) {
+    if (visibleTasks.length === 0) {
+        const emptyState = document.createElement("p");
+        emptyState.className = "empty-state";
+        emptyState.textContent = tasks.length === 0
+            ? "No tasks yet. Add one above to get started."
+            : "No tasks match these filters.";
+        list.appendChild(emptyState);
+        return;
+    }
+
+    visibleTasks.forEach(
+        function(entry) {
+            const task = entry.task;
+            const index = entry.index;
 
             const div =
                 document.createElement("div");
