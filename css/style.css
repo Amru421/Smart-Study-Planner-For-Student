@@ -281,6 +281,22 @@ main {
 }
 
 
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+
+.edit-btn {
+    background: #6c63ff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
 .task-left {
     display: flex;
     gap: 15px;

@@ -316,6 +316,17 @@ function loadTasks() {
 
             taskContent.append(checkbox, name, priority);
 
+            const actions = document.createElement("div");
+            actions.className = "task-actions";
+
+            const editButton = document.createElement("button");
+            editButton.type = "button";
+            editButton.className = "edit-btn";
+            editButton.textContent = "Edit";
+            editButton.addEventListener("click", function () {
+                editTask(index);
+            });
+
             const deleteButton = document.createElement("button");
             deleteButton.type = "button";
             deleteButton.className = "delete-btn";
@@ -324,11 +335,35 @@ function loadTasks() {
                 deleteTask(index);
             });
 
-            div.append(taskContent, deleteButton);
+            actions.append(editButton, deleteButton);
+            div.append(taskContent, actions);
             list.appendChild(div);
 
         }
     );
+}
+
+function editTask(index) {
+
+    let tasks =
+        JSON.parse(
+            localStorage.getItem("tasks")
+        ) || [];
+
+    const updatedName = prompt("Update study task:", tasks[index].name);
+    if (updatedName === null) {
+        return;
+    }
+
+    const trimmedName = updatedName.trim();
+    if (trimmedName === "") {
+        alert("A task name cannot be empty.");
+        return;
+    }
+
+    tasks[index].name = trimmedName;
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    loadTasks();
 }
 
 
