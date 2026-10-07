@@ -93,7 +93,7 @@ function loadSubjects() {
         ) || [];
 
 
-    list.innerHTML = "";
+    list.replaceChildren();
 
 
     subjects.forEach(
@@ -106,27 +106,21 @@ function loadSubjects() {
                 "subject-card";
 
 
-            div.innerHTML = `
+            const title = document.createElement("h3");
+            title.textContent = `📘 ${subject}`;
 
-                <h3>📘 ${subject}</h3>
+            const description = document.createElement("p");
+            description.textContent = "Keep learning and practicing.";
 
-                <p>
-                    Keep learning and practicing.
-                </p>
+            const deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.className = "delete-btn";
+            deleteButton.textContent = "Delete";
+            deleteButton.addEventListener("click", function () {
+                deleteSubject(index);
+            });
 
-                <br>
-
-                <button
-                    class="delete-btn"
-                    onclick="deleteSubject(${index})">
-
-                    Delete
-
-                </button>
-
-            `;
-
-
+            div.append(title, description, deleteButton);
             list.appendChild(div);
 
         }
@@ -233,7 +227,7 @@ function loadTasks() {
         ) || [];
 
 
-    list.innerHTML = "";
+    list.replaceChildren();
 
 
     tasks.forEach(
@@ -253,44 +247,41 @@ function loadTasks() {
             }
 
 
-            const priorityClass =
-                task.priority.toLowerCase();
+            const taskContent = document.createElement("div");
+            taskContent.className = "task-left";
 
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = task.completed;
+            checkbox.setAttribute("aria-label", `Mark ${task.name} as completed`);
+            checkbox.addEventListener("change", function () {
+                toggleTask(index);
+            });
 
-            div.innerHTML = `
+            const name = document.createElement("span");
+            name.textContent = task.name;
 
-                <div class="task-left">
+            const taskPriority = typeof task.priority === "string"
+                ? task.priority
+                : "Low";
+            const priority = document.createElement("span");
+            priority.className = "priority";
+            if (["low", "medium", "high"].includes(taskPriority.toLowerCase())) {
+                priority.classList.add(taskPriority.toLowerCase());
+            }
+            priority.textContent = taskPriority;
 
-                    <input
-                        type="checkbox"
-                        ${task.completed ? "checked" : ""}
-                        onchange="toggleTask(${index})">
+            taskContent.append(checkbox, name, priority);
 
-                    <span>
-                        ${task.name}
-                    </span>
+            const deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.className = "delete-btn";
+            deleteButton.textContent = "Delete";
+            deleteButton.addEventListener("click", function () {
+                deleteTask(index);
+            });
 
-                    <span
-                        class="priority ${priorityClass}">
-
-                        ${task.priority}
-
-                    </span>
-
-                </div>
-
-
-                <button
-                    class="delete-btn"
-                    onclick="deleteTask(${index})">
-
-                    Delete
-
-                </button>
-
-            `;
-
-
+            div.append(taskContent, deleteButton);
             list.appendChild(div);
 
         }
