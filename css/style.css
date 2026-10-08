@@ -58,6 +58,15 @@ nav button {
 }
 
 
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid #554bd8;
+    outline-offset: 2px;
+}
+
+
 main {
     padding: 60px 7%;
 }
@@ -512,6 +521,15 @@ body.dark nav a {
 }
 
 
+body.dark .form-card input,
+body.dark .form-card select,
+body.dark .task-filters select {
+    color: white;
+    background: #2b2b2b;
+    border-color: #555;
+}
+
+
 body.dark .subtitle,
 body.dark .card p {
     color: #bbb;
@@ -560,6 +578,20 @@ body.dark .card p {
     }
 
     .task-filters {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .task {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .task-left {
+        flex-wrap: wrap;
+    }
+
+    .backup-actions {
         align-items: stretch;
         flex-direction: column;
     }

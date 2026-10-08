@@ -4,16 +4,11 @@
 
 function toggleDarkMode() {
 
-    document.body.classList.toggle("dark");
-
-    if (document.body.classList.contains("dark")) {
-
-        localStorage.setItem("darkMode", "true");
-
-    } else {
-
-        localStorage.setItem("darkMode", "false");
-
+    const isDark = document.body.classList.toggle("dark");
+    localStorage.setItem("darkMode", String(isDark));
+    const toggle = document.getElementById("darkModeToggle");
+    if (toggle) {
+        toggle.setAttribute("aria-pressed", String(isDark));
     }
 }
 
@@ -24,6 +19,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
         document.body.classList.add("dark");
 
+    }
+
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    if (darkModeToggle) {
+        darkModeToggle.setAttribute(
+            "aria-pressed",
+            String(document.body.classList.contains("dark"))
+        );
     }
 
     loadSubjects();

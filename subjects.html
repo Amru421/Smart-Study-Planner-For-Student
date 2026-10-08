@@ -23,7 +23,7 @@
             <a href="timetable.html">Timetable</a>
             <a href="progress.html">Progress</a>
 
-            <button onclick="toggleDarkMode()">🌙</button>
+            <button type="button" id="darkModeToggle" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode" onclick="toggleDarkMode()">🌙</button>
         </nav>
 
     </header>
@@ -38,15 +38,16 @@
         </p>
 
 
-        <div class="form-card">
+        <form class="form-card" onsubmit="event.preventDefault(); addSubject()">
 
-            <input type="text" id="subjectInput" placeholder="Enter subject name">
+            <label for="subjectInput" class="visually-hidden">Subject name</label>
+            <input type="text" id="subjectInput" placeholder="Enter subject name" maxlength="100" required>
 
-            <button onclick="addSubject()" class="btn">
+            <button type="submit" class="btn">
                 + Add Subject
             </button>
 
-        </div>
+        </form>
 
 
         <div id="subjectList" class="subject-grid"></div>

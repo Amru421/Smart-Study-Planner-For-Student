@@ -36,7 +36,9 @@ The project is built using **HTML, CSS, and JavaScript** and stores user data di
   * Medium
   * High
 * Mark tasks as completed
+* Edit saved task names
 * Delete tasks
+* Filter tasks by completion status and priority
 * Automatically calculate completion percentage
 
 ### 🕐 Weekly Timetable
@@ -56,6 +58,7 @@ The project is built using **HTML, CSS, and JavaScript** and stores user data di
 
 * Switch between light and dark themes
 * Dark-mode preference is saved in the browser
+* The toggle exposes its current state to assistive technology
 
 ### 💾 Local Storage
 
@@ -65,6 +68,8 @@ The website uses browser **Local Storage** to save:
 * Study tasks
 * Task completion status
 * Dark-mode preference
+
+Use **Progress → Back up your planner** to download or restore a versioned JSON backup of subjects and tasks.
 
 No database is required.
 

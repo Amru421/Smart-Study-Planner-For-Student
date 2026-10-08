@@ -38,7 +38,7 @@
                 Progress
             </a>
 
-            <button onclick="toggleDarkMode()">
+            <button type="button" id="darkModeToggle" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode" onclick="toggleDarkMode()">
                 🌙
             </button>
 
@@ -56,11 +56,13 @@
         </p>
 
 
-        <div class="form-card">
+        <form class="form-card" onsubmit="event.preventDefault(); addTask()">
 
-            <input type="text" id="taskInput" placeholder="Enter study task">
+            <label for="taskInput" class="visually-hidden">Study task</label>
+            <input type="text" id="taskInput" placeholder="Enter study task" maxlength="160" required>
 
 
+            <label for="priority" class="visually-hidden">Task priority</label>
             <select id="priority">
 
                 <option value="Low">
@@ -78,13 +80,13 @@
             </select>
 
 
-            <button onclick="addTask()" class="btn">
+            <button type="submit" class="btn">
 
                 + Add Task
 
             </button>
 
-        </div>
+        </form>
 
 
         <div class="task-section">
